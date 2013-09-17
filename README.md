@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 # Grunt Demo
 
 A repo to support [this blog post on Grunt, Compass and JS workflow](http://matthew-jackson.com/notes/development/grunt-workflow-for-sass-compass-and-js/)
 
 Post copied below for shits and giggles.
+=======
+grunt-demo
+==========
+>>>>>>> afb357f3c8b012db22736ad1cf385ab5cb3233d1
 
 <p class="drop-cap">Previously, we installed Node, NPM and Grunt including setting up a package.json and a Gruntfile. In this exciting installment, we're gonna plug everything in so you can see how amazers Grunt is, experience its awesome power and bathe in a warm glow of lazy satisfaction.</p>
 
@@ -30,6 +35,7 @@ Grunt makes use of plugins to do all its automating and task running. We need se
 
 Jump over to your command line. First we need to browse to our project in the command line: 
 
+<<<<<<< HEAD
 	$ cd path/to/my/project/folder
 	
 So, if you input "cd" followed by the path to your project, you can now install the first plugin; grunt-contrib-watch
@@ -45,6 +51,29 @@ The command line will throw some robot-barf at you now but keep your cool. When 
 	    "grunt-contrib-watch": "~0.5.0"
 	  }
 	}
+=======
+{% highlight bash linenos %}
+$ cd path/to/my/project/folder
+{% endhighlight %}
+
+So, if you input "cd" followed by the path to your project, you can now install the first plugin; grunt-contrib-watch
+
+{% highlight bash linenos %}
+$ npm install grunt-contrib-watch --save-dev
+{% endhighlight %}
+
+The command line will throw some robot-barf at you now but keep your cool. When thats done, go check your package.json file. It should have updated the dependenciy section to include grunt-contrib-watch:
+
+{% highlight js linenos %}
+{
+ // ...
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-watch": "~0.5.0"
+  }
+}
+{% endhighlight %}
+>>>>>>> afb357f3c8b012db22736ad1cf385ab5cb3233d1
 
 Now go back to the command line and repeat this process (ie. one by one) with the following plugins:
 
@@ -60,6 +89,7 @@ So with a bit of luck, you now have all the plugins you need for your project. Y
 
 A grunt file looks a bit like this:
 
+<<<<<<< HEAD
 	module.exports = function(grunt) {
 
 	  // Project configuration.
@@ -78,6 +108,28 @@ A grunt file looks a bit like this:
 	  grunt.registerTask('default', []);
 
 	};
+=======
+{% highlight js linenos %}
+module.exports = function(grunt) {
+
+  // Project configuration.
+  grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
+   // CONFIG ===================================/
+
+  });
+
+  // DEPENDENT PLUGINS =========================/
+
+  grunt.loadNpmTasks();
+
+  // TASKS =====================================/
+
+  grunt.registerTask('default', []);
+
+};
+{% endhighlight %}
+>>>>>>> afb357f3c8b012db22736ad1cf385ab5cb3233d1
 
 The Gruntfile is split into 3 main sections:
 
@@ -89,6 +141,10 @@ You set up the configuration and options in the first section of your Gruntfile,
 
 Lets first list our dependencies to include. Find the line <code>grunt.loadNpmTasks();</code> and copy and paste it 3 times. It should now be this:
 
+<<<<<<< HEAD
+=======
+{% highlight js linenos %}
+>>>>>>> afb357f3c8b012db22736ad1cf385ab5cb3233d1
 
 	// ...
 
@@ -100,10 +156,19 @@ Lets first list our dependencies to include. Find the line <code>grunt.loadNpmTa
 
 	// ...
 
+<<<<<<< HEAD
 	};
 
  Add the name of a plugin, wrapped in quotes, between each set of brackets so it looks like this:
 
+=======
+};
+{% endhighlight %}
+
+ Add the name of a plugin, wrapped in quotes, between each set of brackets so it looks like this:
+
+ {% highlight js linenos %}
+>>>>>>> afb357f3c8b012db22736ad1cf385ab5cb3233d1
 
 	// ...
 
@@ -115,6 +180,7 @@ Lets first list our dependencies to include. Find the line <code>grunt.loadNpmTa
 
 	// ...
 
+<<<<<<< HEAD
 	};
 
 Next, lets configure our watch task. Underneath the comment about Configuration copy and paste this:
@@ -135,11 +201,37 @@ Next, lets configure our watch task. Underneath the comment about Configuration 
 	// ...
 
 	};
+=======
+};
+{% endhighlight %}
+
+Next, lets configure our watch task. Underneath the comment about Configuration copy and paste this:
+
+{% highlight js linenos %}
+
+// CONFIGURATION =============================/
+
+watch: {
+ 	compass: {
+    	files: ['**/*.{scss,sass}'],
+    	tasks: ['compass:dev']
+    },
+    js: {
+		files: ['**/*.js'],
+		tasks: ['uglify']
+	}
+},
+// ...
+
+};
+{% endhighlight %}
+>>>>>>> afb357f3c8b012db22736ad1cf385ab5cb3233d1
 
 What we've done here is to create a watch task, sub tasks of that called compass (which we'll refer to now as watch:compass) and js (watch:js). We configured watch:compass task to watch files with .scss or .sass extensions. If they change the watch:compass task will call our "compass:dev" task. We configured the js task to watch for changes in js files and run the "uglify" task
 
 Lets set up the Compass task. After the last closing bracket and comma of the watch task (follow the indentation) add the following:
 
+<<<<<<< HEAD
 	compass: {
 		dev: {
 			options: {              
@@ -149,11 +241,25 @@ Lets set up the Compass task. After the last closing bracket and comma of the wa
 			}
 		},
 	},
+=======
+{% highlight js linenos %}
+compass: {
+	dev: {
+		options: {              
+			sassDir: ['styles/sass'],
+			cssDir: ['styles/css'],
+			environment: 'development'
+		}
+	},
+},
+{% endhighlight %}
+>>>>>>> afb357f3c8b012db22736ad1cf385ab5cb3233d1
 
 Now we've set up a compass task, with a sub task called dev (compass:dev), we've topld it where our sass is and where to output the css. We've also set the environment to production. This will use some defaults for our compilation which are useful for development (like keeping it expanded, adding line comments etc).
 
 Now we could have just set up a compass task (without the dev bit). The options chunk would have just been between the compass:{} brackets. However, we're going to be a bit smarter thn that. We're going to set up a seperate sub task for production. Edit your compass task to look like this:
 
+<<<<<<< HEAD
 	compass: {
 		dev: {
 			//... dev options here
@@ -166,11 +272,28 @@ Now we could have just set up a compass task (without the dev bit). The options 
 			}
 	 	},
 	},
+=======
+{% highlight js linenos %}
+compass: {
+	dev: {
+		//... dev options here
+	},
+	prod: {
+		options: {              
+			sassDir: ['styles/sass'],
+			cssDir: ['styles/css'],
+			environment: 'production'
+		}
+ 	},
+},
+{% endhighlight %}
+>>>>>>> afb357f3c8b012db22736ad1cf385ab5cb3233d1
 
 Now we could call compass:prod as a task and it would copile our sass into a compressed style, ready for deployment.
 
 Lets set up our ugilfy task to concat and minify our JS. After the compass task, add the following: 
 
+<<<<<<< HEAD
 	uglify: {
 		all: {
 			files: {
@@ -181,6 +304,20 @@ Lets set up our ugilfy task to concat and minify our JS. After the compass task,
 	    	}
 		},
 	},
+=======
+{% highlight js linenos %}
+uglify: {
+	all: {
+		files: {
+        	'js/min/main.min.js': [
+        	'js/libs/jquery.js', 
+        	'js/main.js'
+        	]
+    	}
+	},
+},
+{% endhighlight %}
+>>>>>>> afb357f3c8b012db22736ad1cf385ab5cb3233d1
 
 When we call this task, Uglify is going to get all the files listed between the square brackets, minify them and then squish them all together. If we had some sort of HTML build process (say using a static site generator) we could include the full scripts in development and run the above minification code as apart of our prod task - just like we did with the Compass task above. 
 
@@ -190,7 +327,13 @@ Its this kind of build procedure that really makes Grunt shine over things like 
 
 We need to compile our CSS and JS when we kick Grunt off. We also wanna run our watch task. To do this, we'll trigger it using our default task. Find the line in your Gruntfile that looks like this: 
 
+<<<<<<< HEAD
     grunt.registerTask('default', []);
+=======
+{% highlight js linenos %}
+  grunt.registerTask('default', []);
+{% endhighlight %}
+>>>>>>> afb357f3c8b012db22736ad1cf385ab5cb3233d1
 
 Any tasks we want to run when we enter Grunt need to go between the square brackets. so add <code>'compass:dev' , 'uglify' , 'watch'</code> between the brackets (with quotes and comma seperated).
 
@@ -198,13 +341,21 @@ Anyways, lets try out what we've done so far. Jump over to your command line (ma
 
 If you had have pressed enter, you would have seen this:
 
+<<<<<<< HEAD
 	Running "watch" task
 	Waiting...Warning: EMFILE, too many open files
+=======
+{% highlight js linenos %}
+Running "watch" task
+Waiting...Warning: EMFILE, too many open files
+{% endhighlight %}
+>>>>>>> afb357f3c8b012db22736ad1cf385ab5cb3233d1
 
 over and over and over again... You can try doing it if you like, just be prepared to hit <code>ctrl + c</code> (Mac and Windows) to cancel the process.
 
 The reason is we're watching all the JS files in our project. If you go take a peak in the node_modules folder (which was added when we installed all our node plugins, you'll see we have lots of folders wiht lots of javascript files in them. We need to be more specific about what js files to watch. Update your watch task:
 
+<<<<<<< HEAD
 	watch: {
 	 	compass: {
 	    	files: ['**/*.{scss,sass}'],
@@ -215,11 +366,26 @@ The reason is we're watching all the JS files in our project. If you go take a p
 			tasks: ['uglify']
 		}
 	},
+=======
+{% highlight js linenos %}
+watch: {
+ 	compass: {
+    	files: ['**/*.{scss,sass}'],
+    	tasks: ['compass:dev']
+    },
+    js: {
+		files: ['js/**/*.js'], // <== CHANGE HERE
+		tasks: ['uglify']
+	}
+},
+{% endhighlight %}
+>>>>>>> afb357f3c8b012db22736ad1cf385ab5cb3233d1
 
 By adding the js folder, we can ensure Grunt isn't wasting time and energy watching millions of js files (unless you have millions of js files in your js folder - I don't recommend a million javascript files in your project)
 
 Try running grunt now by going to your command line and entering “grunt”.
 
+<<<<<<< HEAD
 	Running "compass:dev" (compass) task
 	unchanged styles/sass/style.scss
 	Compilation took 0.001s
@@ -245,6 +411,40 @@ Boom! The feedback is pretty self explanatory. Whats it waiting for? Changes to 
 	Done, without errors.
 	Completed in 1.305s at Mon Sep 16 2013 22:31:48 GMT+0100 (BST) - Waiting...
 
+=======
+{% highlight bash linenos %}
+
+Running "compass:dev" (compass) task
+unchanged styles/sass/style.scss
+Compilation took 0.001s
+
+Running "uglify:all" (uglify) task
+File "JS/min/main.min.js" created.
+
+Running "watch" task
+Waiting...
+
+{% endhighlight %}
+
+Boom! The feedback is pretty self explanatory. Whats it waiting for? Changes to compile. Go make a change to the style.scss file and hit save. Now check the command line. You should see something like:
+
+{% highlight bash linenos %}
+
+Running "watch" task
+Waiting...OK
+>> File "styles/sass/style.scss" changed.
+
+Running "compass:dev" (compass) task
+   remove .sass-cache/ 
+   remove styles/css/style.css 
+   create styles/css/style.css (0.009s)
+Compilation took 0.01s
+
+Done, without errors.
+Completed in 1.305s at Mon Sep 16 2013 22:31:48 GMT+0100 (BST) - Waiting...
+
+{% endhighlight %}
+>>>>>>> afb357f3c8b012db22736ad1cf385ab5cb3233d1
 
 The change should now be visible in your css file too! Huzzah. 
 
@@ -254,20 +454,41 @@ The last thing we'll set up is a non-default task.
 
 Now you can run any task in grunt by typing "grunt taskname:subtask" in the command line. For example to run our compass:prod task, we would enter:
 
+<<<<<<< HEAD
     $ grunt compass:prod
+=======
+{% highlight bash linenos %}
+
+$ grunt compass:prod
+
+{% endhighlight %}
+>>>>>>> afb357f3c8b012db22736ad1cf385ab5cb3233d1
 
 That would be fine, but if you had a JS build for prod, or the aforementioned ftp deploy you wanted to run at the same time, that would be moer cumbersome to type into terminal.
 
 Underneath the line of our default task, enter the following:
 
+<<<<<<< HEAD
     // PROD BUILD
     grunt.registerTask('prod', ['compass:dev']);
+=======
+{% highlight js linenos %}
+// PROD BUILD
+grunt.registerTask('prod', ['compass:dev']);
+{% endhighlight %}
+>>>>>>> afb357f3c8b012db22736ad1cf385ab5cb3233d1
 
 Here we create a task called "prod" and add one task to be run when its called (our compass:prod task). Same rules apply as the default task, to add others, just add them in the order you want them performed (left to right), in quotes, comma seperated.
 
 Go make a change to the Sass file and then run this in terminal: 
 
+<<<<<<< HEAD
     $ grunt:prod
+=======
+{% highlight bash linenos %}
+$ grunt:prod
+{% endhighlight %}
+>>>>>>> afb357f3c8b012db22736ad1cf385ab5cb3233d1
 
 If everything worked, it should have recompiled, but compressed th eoutput CSS onto one line. 
 
@@ -279,4 +500,8 @@ If I got anything wrong or you've any questions, tweet me. I'm generally not a d
 
 Happy grunting. 
 
+<<<<<<< HEAD
 <a href="http://twitter.com/matthewbeta" class="signature">@matthewbeta</a>
+=======
+<a href="http://twitter.com/matthewbeta" class="signature">@matthewbeta</a>
+>>>>>>> afb357f3c8b012db22736ad1cf385ab5cb3233d1

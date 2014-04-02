@@ -31,6 +31,6 @@
     "grunt-contrib-watch": "~0.5.3",
     "url": "~0.7.9",
     "socket.io": "~0.9.16",
-    "grunt-style-injector": "~0.1.9"
+    "grunt-browser-sync": "~0.1.9"
   }
 }

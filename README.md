@@ -30,11 +30,11 @@ Grunt makes use of plugins to do all its automating and task running. We need se
 
 Jump over to your command line. First we need to browse to our project in the command line: 
 
-	$ cd path/to/my/project/folder
+    $ cd path/to/my/project/folder
 	
 So, if you input "cd" followed by the path to your project, you can now install the first plugin; grunt-contrib-watch
 
-	$ npm install grunt-contrib-watch --save-dev
+    $ npm install grunt-contrib-watch --save-dev
 	
 The command line will throw some robot-barf at you now but keep your cool. When thats done, go check your package.json file. It should have updated the dependenciy section to include grunt-contrib-watch:
 
@@ -48,11 +48,9 @@ The command line will throw some robot-barf at you now but keep your cool. When 
 
 Now go back to the command line and repeat this process (ie. one by one) with the following plugins:
 
-{% highlight bash linenos %}
-$ npm install grunt-contrib-compass --save-dev
-$ npm install grunt-contrib-uglify --save-dev
-$ npm install grunt-style-injector --save-dev
-{% endhighlight %}
+    $ npm install grunt-contrib-compass --save-dev
+    $ npm install grunt-contrib-uglify --save-dev
+    $ npm install grunt-browser-sync --save-dev
 
 So with a bit of luck, you now have all the plugins you need for your project. Your package.json should list all these in devDependencies (maybe a few more too).
 
@@ -267,7 +265,7 @@ Here we create a task called "prod" and add one task to be run when its called (
 
 Go make a change to the Sass file and then run this in terminal: 
 
-    $ grunt:prod
+    $ grunt prod
 
 If everything worked, it should have recompiled, but compressed th eoutput CSS onto one line. 
 
